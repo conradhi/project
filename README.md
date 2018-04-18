@@ -37,7 +37,7 @@ Welcome screen.
 **Search**
 Component containing search bar.
 
-**Destinations*
+**Destinations**
 Render search results.
 
 **Detailed View**
