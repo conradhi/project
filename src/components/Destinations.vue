@@ -6,7 +6,7 @@
       <div class="row">
 
         <div v-if="ready" v-for="(city, index) in weatherList" class="col-4">
-          <router-link v-bind:to="'/recipe/' + weatherList[index].id">
+          <router-link v-bind:to="'/detailedview/' + weatherList[index].id">
             <div class="m-4 p-4"  id="results">
               <div class="col-12" @click="setCurrentCity(weatherList[index].id)">
                 <div class="col-12 text-center">
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import {modelInstance} from "./DinnerModel";
+import {modelInstance} from "./Model";
 
   export default {
 

@@ -1,8 +1,8 @@
 import welcome from './components/Welcome.vue'
-import sidebar from './components/Sidebar.vue'
-import dishes from './components/Dishes.vue'
-import recipe from './components/Recipe.vue'
-import { modelInstance } from "./components/DinnerModel";
+import search from './components/Search.vue'
+import destinations from './components/Destinations.vue'
+import detailedview from './components/DetailedView.vue'
+import { modelInstance } from "./components/Model";
 
 
 export default [
@@ -11,18 +11,18 @@ export default [
       component: welcome
     },
     {
-      path: '/dishes',
+      path: '/destinations',
       components: {
-        default: dishes,
-        navbar: sidebar,
+        default: destinations,
+        navbar: search,
         props: { model: modelInstance }
       }
     },
     {
-      path: '/recipe/:id',
+      path: '/detailedview/:id',
       components:{
-        default: recipe,
-        //navbar: sidebar,
+        default: detailedview,
+        //navbar: sidebar, obs heter numera search inte sidebar
         props: { model: modelInstance }
       }
     },

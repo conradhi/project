@@ -6,7 +6,7 @@
         <h6> {{ msg }} </h6>
 
         <div class="col-12">
-             <router-link class='btn btn-primary' to="/dishes" exact>Plan your perfect holiday</router-link>
+             <router-link class='btn btn-primary' to="/destinations" exact>Plan your perfect holiday</router-link>
   			</div>
 
       </div>

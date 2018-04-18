@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import {modelInstance} from "./DinnerModel";
+import {modelInstance} from "./Model";
   export default {
     //props: ['model'],
     // this methods is called by React lifecycle when the

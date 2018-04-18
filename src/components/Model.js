@@ -3,7 +3,7 @@
 };*/
 
 import json from "./city.list.json"
-const DinnerModel = function () {
+const Model = function () {
 
   let observers = [];
   let cities = json;
@@ -70,10 +70,10 @@ const DinnerModel = function () {
   const handleError = function (error) {
     if (error.json) {
       error.json().then(error => {
-        console.error('getAllDishes() API Error:', error.message || error)
+        console.error('getWeather() API Error:', error.message || error)
       })
     } else {
-      console.error('getAllDishes() API Error:', error.message || error)
+      console.error('getWeather() API Error:', error.message || error)
     }
   }
 
@@ -92,4 +92,4 @@ const DinnerModel = function () {
   };
 };
 
-export const modelInstance = new DinnerModel();
+export const modelInstance = new Model();

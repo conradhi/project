@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {modelInstance} from "./DinnerModel";
+import {modelInstance} from "./Model";
 
   export default {
 

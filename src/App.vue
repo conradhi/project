@@ -13,9 +13,9 @@
 <script>
 
 import Welcome from './components/Welcome.vue';
-import Sidebar from './components/Sidebar.vue';
-import Dishes from './components/Dishes.vue';
-import Recipe from './components/Recipe.vue';
+import Search from './components/Search.vue';
+import Destinations from './components/Destinations.vue';
+import DetailedView from './components/DetailedView.vue';
 
 
 
@@ -23,9 +23,9 @@ export default {
 //  name: 'App'
   components: {
        'welcome': Welcome,
-       'recipe': Recipe,
-       'sidebar': Sidebar,
-       'dishes': Dishes,
+       'detailedview': DetailedView,
+       'search': Search,
+       'destinations': Destinations,
      }
  }
 </script>
