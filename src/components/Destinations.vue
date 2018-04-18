@@ -16,7 +16,7 @@
                   <h6>Clouds: {{weatherList[weatherList.length - index - 1].clouds.all}}</h6>
                 </div>
                 <div class="col-12 text-center">
-                  <h6>Temp: {{Math.round((weatherList[weatherList.length - index - 1].main.temp - 273,15) * 100) / 100}} C</h6>
+                  <h6>Temp: {{Math.round(weatherList[weatherList.length - index - 1].main.temp - 273.15)}} C</h6>
                 </div>
                 <div class="col-12 text-center">
                   <h6>{{weatherList[weatherList.length - index - 1].weather[0].description}}</h6>
