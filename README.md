@@ -5,6 +5,7 @@
 ## Description
 
 The application aims to facilitate the process of planning a vacation destination with respect to where the weather is pleasant.
+OBS! Firebase deployment is under construction, please use localHost to run the application!
 
 <hr>
 
