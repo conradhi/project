@@ -11,13 +11,14 @@ The application aims to facilitate the process of planning a vacation destinatio
 ### Done
 * Basic setup of application
 * Fetch current weather from API
-* Connect application to Firebase
+* Uppload data to Firebase
 
 ### ToDo
 
 * Fetch Five day forecast from API
 * Plot in graph
 * Go Back-button
+* Deploy app in Firebase
 
 <hr>
 
