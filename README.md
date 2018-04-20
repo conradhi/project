@@ -12,7 +12,7 @@ OBS! Firebase deployment is under construction, please use localHost to run the 
 ### Done
 * Basic setup of application
 * Fetch current weather from API
-* Uppload data to Firebase
+* Store data to Firebase
 
 ### ToDo
 
