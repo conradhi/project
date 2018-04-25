@@ -12,7 +12,7 @@
               <h6>Temp: {{forecast[index].main.temp}} C  {{forecast[index].dt_txt}}</h6>
             </div>
          </div>-->
-         <div><line-chart :data="chartList"></line-chart></div>
+         <div><line-chart :data="chartList" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="Temperature"></line-chart></div>
         </div>
         </div>
       </div>
