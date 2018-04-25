@@ -3,17 +3,23 @@
       <div class="m-4 p-4"  id="results">
         <div class="col-12">
           <div class="col-12 text-center">
-            <h4>{{currentCity.name}}</h4>
+            <h4>{{currentCity}}</h4>
           </div>
           <div class="col-12 text-center">
-            <h6>Clouds: {{currentCity.clouds.all}}</h6>
+            <h6>Clouds: </h6>
           </div>
           <div class="col-12 text-center">
-            <h6>Temp: {{Math.round((currentCity.main.temp - 273,15) * 100) / 100}} C</h6>
+            <h6>Temp:  C</h6>
           </div>
           <div class="col-12 text-center">
-            <h6>{{currentCity.weather[0].description}}</h6>
+            <h6></h6>
           </div>
+
+          <div v-if="ready" v-for="(temp, index) in forecast" class="col-12">
+             <div class="col-12 text-center">
+              <h6>Temp: {{forecast[index].main.temp}} C  {{forecast[index].dt_txt}}</h6>
+         </div>
+        </div>
         </div>
       </div>
   </div>
@@ -26,9 +32,11 @@ import {modelInstance} from "./Model";
 
     created() {
       modelInstance.addObserver(this)
-      modelInstance.getWeather(modelInstance.getCurrentCity()).then(weather => {
-      //  console.log(weather);
-        this.currentCity = weather
+      modelInstance.getWeatherForecast(modelInstance.getCurrentCity()).then(weather => {
+        console.log(weather);
+        console.log(weather.city.name);
+        this.currentCity = weather.city.name
+        this.forecast = weather.list
         this.ready = true
         this.status = 'LOADED'
       }).catch(() => {
@@ -44,7 +52,8 @@ import {modelInstance} from "./Model";
 
     data() {
       return {
-        currentCity: [],
+        currentCity: '',
+        forecast: [],
         ready: false
       }
     },

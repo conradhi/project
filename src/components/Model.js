@@ -50,9 +50,18 @@ const Model = function () {
   }
   // API Calls
 
+  this.getWeatherForecast = function(id){
+    const url = "https://api.openweathermap.org/data/2.5/forecast?id=" + id + "&APPID=6136693860b8ed827adace0ea28df125"
+    return fetch(url)
+      .then(processResponse)
+      .catch(handleError)
+  }
+
 
   this.getWeather = function (id) {
+    //https://api.openweathermap.org/data/2.5/forecast?id={city ID}
     const url = "https://api.openweathermap.org/data/2.5/weather?id=" + id + "&APPID=6136693860b8ed827adace0ea28df125"
+    
     return fetch(url)
       .then(processResponse)
       .catch(handleError)

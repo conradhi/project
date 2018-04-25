@@ -91,7 +91,7 @@ import {modelInstance} from "./Model";
       setCity(str, id){
         this.citySelected = str,
         modelInstance.getWeather(id).then(weather => {
-        //  console.log(weather);
+          console.log(weather);
           modelInstance.setWeatherList(weather)
           this.status = 'LOADED'
         }).catch(() => {
