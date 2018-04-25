@@ -5,19 +5,21 @@
 ## Description
 
 The application aims to facilitate the process of planning a vacation destination with respect to where the weather is pleasant.
+OBS! Firebase deployment is under construction, please use localHost to run the application!
 
 <hr>
 
 ### Done
 * Basic setup of application
 * Fetch current weather from API
-* Connect application to Firebase
+* Store data to Firebase
 
 ### ToDo
 
 * Fetch Five day forecast from API
 * Plot in graph
 * Go Back-button
+* Deploy app in Firebase
 
 <hr>
 
