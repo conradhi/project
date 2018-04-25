@@ -5,24 +5,19 @@
           <div class="col-12 text-center">
             <h4>{{currentCity}}</h4>
           </div>
-          <div class="col-12 text-center">
-            <h6>Clouds: </h6>
-          </div>
-          <div class="col-12 text-center">
-            <h6>Temp:  C</h6>
-          </div>
-          <div class="col-12 text-center">
-            <h6></h6>
-          </div>
-
+          <!--
           <div v-if="ready" v-for="(temp, index) in forecast" class="col-12">
              <div class="col-12 text-center">
+             
               <h6>Temp: {{forecast[index].main.temp}} C  {{forecast[index].dt_txt}}</h6>
-         </div>
+            </div>
+         </div>-->
+         <div><line-chart :data="chartList"></line-chart></div>
         </div>
         </div>
       </div>
   </div>
+
 </template>
 
 <script>
@@ -38,10 +33,14 @@ import {modelInstance} from "./Model";
         this.currentCity = weather.city.name
         this.forecast = weather.list
         this.ready = true
+        this.createList(weather.list);
         this.status = 'LOADED'
       }).catch(() => {
         this.status = 'ERROR'
       })
+      console.log("created")
+
+
     },
 
     // this is called when component is removed destroyed
@@ -54,6 +53,7 @@ import {modelInstance} from "./Model";
       return {
         currentCity: '',
         forecast: [],
+        chartList: [],
         ready: false
       }
     },
@@ -62,6 +62,15 @@ import {modelInstance} from "./Model";
       // in our update function we modify the the property of
       // the compoented which will cause the component to re-render
       update() {
+      },
+      // Method for creating list for chart
+      createList(obj){
+        for(var i=0; i< obj.length; i++){
+          console.log(obj[i].dt_txt);
+          this.chartList.push([obj[i].dt_txt, Math.round(obj[i].main.temp-273.15)]);
+        }
+        console.log("chartlist");
+        console.log(this.chartList);
       }
 
     }
