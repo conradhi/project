@@ -4,9 +4,9 @@
         <div class="col-12">
           <div class="col-12 text-center">
             <h4>{{currentCity}}</h4>
-            <button v-on:click="showHumidity = !showHumidity">Humidity</button>
-            <button v-on:click="showTemp = !showTemp">Temperature</button>
-            <button v-on:click="showClouds = !showClouds">Clouds</button>
+            <button v-on:click="toggleHumidity()">Humidity</button>
+            <button v-on:click="toggleTemp()">Temperature</button>
+            <button v-on:click="toggleClouds()">Clouds</button>
           </div>
           <!--
           <div v-if="ready" v-for="(temp, index) in forecast" class="col-12">
@@ -15,9 +15,10 @@
               <h6>Temp: {{forecast[index].main.temp}} C  {{forecast[index].dt_txt}}</h6>
             </div>
          </div>-->
-         <div v-if="showHumidity"><line-chart :data="humChart" :colors="['#B8B8B8', '#b00']" xtitle="hej" ytitle="hejsan"></line-chart></div>
-         <div v-show="showTemp"><line-chart :data="tempChart" :colors="['#B8B8B8', '#b00']" xtitle="hej" ytitle="hejsan"></line-chart></div>
-
+         <div v-if="showHumidity"><line-chart :data="humChart" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="% Humidity"></line-chart></div>
+         <div v-else-if="showTemp"><line-chart :data="tempChart" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="Temperature C"></line-chart></div>
+         <div v-else-if="showClouds"><line-chart :data="cloudChart" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="% Clouds"></line-chart></div>
+         <router-link class='btn btn-primary mb-3' to="/destinations" exact>Back to search results</router-link>
         </div>
         </div>
       </div>
@@ -38,6 +39,7 @@ import {modelInstance} from "./Model";
         this.ready = true
         this.temperatureList(weather.list);
         this.humidityList(weather.list);
+        this.cloudList(weather.list);
         this.status = 'LOADED'
       }).catch(() => {
         this.status = 'ERROR'
@@ -66,6 +68,22 @@ import {modelInstance} from "./Model";
     },
 
     methods: {
+
+      toggleClouds(){
+        this.showClouds = true;
+        this.showHumidity = false;
+        this.showTemp = false;
+      },
+      toggleHumidity(){
+        this.showClouds = false;
+        this.showHumidity = true;
+        this.showTemp = false;
+      },
+      toggleTemp(){
+        this.showClouds = false;
+        this.showHumidity = false;
+        this.showTemp = true;
+      },
       // in our update function we modify the the property of
       // the compoented which will cause the component to re-render
       update() {
@@ -85,7 +103,7 @@ import {modelInstance} from "./Model";
       },
       cloudList(obj){
         for(var i=0; i< obj.length; i++){
-          this.cloudChart.push([obj[i].dt_txt, Math.round(obj[i].clouds.all)]);
+          this.cloudChart.push([obj[i].dt_txt, obj[i].clouds.all]);
         }
       }
 
