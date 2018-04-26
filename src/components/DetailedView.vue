@@ -4,9 +4,9 @@
         <div class="col-12">
           <div class="col-12 text-center">
             <h4>{{currentCity}}</h4>
-            <button v-on:click="!showHumidity">Humidity</button>
-            <button v-on:click="!showTemp">Temperature</button>
-            <button v-on:click="!showClouds">Clouds</button>
+            <button v-on:click="showHumidity = !showHumidity">Humidity</button>
+            <button v-on:click="showTemp = !showTemp">Temperature</button>
+            <button v-on:click="showClouds = !showClouds">Clouds</button>
           </div>
           <!--
           <div v-if="ready" v-for="(temp, index) in forecast" class="col-12">
@@ -15,8 +15,9 @@
               <h6>Temp: {{forecast[index].main.temp}} C  {{forecast[index].dt_txt}}</h6>
             </div>
          </div>-->
-         <div><line-chart :data="humChart" :colors="['#B8B8B8', '#b00']" xtitle="hej" ytitle="hejsan"></line-chart></div>
-         <div></div>
+         <div v-if="showHumidity"><line-chart :data="humChart" :colors="['#B8B8B8', '#b00']" xtitle="hej" ytitle="hejsan"></line-chart></div>
+         <div v-show="showTemp"><line-chart :data="tempChart" :colors="['#B8B8B8', '#b00']" xtitle="hej" ytitle="hejsan"></line-chart></div>
+
         </div>
         </div>
       </div>
