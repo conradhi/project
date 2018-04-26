@@ -4,9 +4,9 @@
         <div class="col-12">
           <div class="col-12 text-center">
             <h4>{{currentCity}}</h4>
-            <button v-on:click="showHumidity = true">Humidity</button>
-            <button v-on:click="showTemp = true">Temperature</button>
-            <button v-on:click="showClouds = true">Clouds</button>
+            <button v-on:click="!showHumidity">Humidity</button>
+            <button v-on:click="!showTemp">Temperature</button>
+            <button v-on:click="!showClouds">Clouds</button>
           </div>
           <!--
           <div v-if="ready" v-for="(temp, index) in forecast" class="col-12">
@@ -42,8 +42,6 @@ import {modelInstance} from "./Model";
         this.status = 'ERROR'
       })
       console.log("created")
-
-
     },
 
     // this is called when component is removed destroyed
@@ -62,8 +60,8 @@ import {modelInstance} from "./Model";
         ready: false,
         showHumidity: false,
         showTemp: false,
-        showClouds: false 
-      }
+        showClouds: false,
+      } 
     },
 
     methods: {
@@ -76,7 +74,7 @@ import {modelInstance} from "./Model";
         for(var i=0; i< obj.length; i++){
           this.tempChart.push([obj[i].dt_txt, Math.round(obj[i].main.temp-273.15)]);
         }
-        //console.log("chartlist");
+        //console.log("showHumidity");
         //console.log(this.chartList);
       },
       humidityList(obj){
