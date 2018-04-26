@@ -13,7 +13,7 @@
                   <h4>{{weatherList[weatherList.length - index - 1].name}}</h4>
                 </div>
                 <div class="col-12 text-center">
-                  <h6>Clouds: {{weatherList[weatherList.length - index - 1].clouds.all}}</h6>
+                  <h6>Clouds: {{weatherList[weatherList.length - index - 1].clouds.all}} %</h6>
                 </div>
                 <div class="col-12 text-center">
                   <h6>Temp: {{Math.round(weatherList[weatherList.length - index - 1].main.temp - 273.15)}} C</h6>

@@ -4,6 +4,9 @@
         <div class="col-12">
           <div class="col-12 text-center">
             <h4>{{currentCity}}</h4>
+            <button v-on:click="showHumidity = true">Humidity</button>
+            <button v-on:click="showTemp = true">Temperature</button>
+            <button v-on:click="showClouds = true">Clouds</button>
           </div>
           <!--
           <div v-if="ready" v-for="(temp, index) in forecast" class="col-12">
@@ -12,7 +15,8 @@
               <h6>Temp: {{forecast[index].main.temp}} C  {{forecast[index].dt_txt}}</h6>
             </div>
          </div>-->
-         <div><line-chart :data="chartList" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="Temperature"></line-chart></div>
+         <div><line-chart :data="humChart" :colors="['#B8B8B8', '#b00']" xtitle="hej" ytitle="hejsan"></line-chart></div>
+         <div></div>
         </div>
         </div>
       </div>
@@ -28,12 +32,11 @@ import {modelInstance} from "./Model";
     created() {
       modelInstance.addObserver(this)
       modelInstance.getWeatherForecast(modelInstance.getCurrentCity()).then(weather => {
-        console.log(weather);
-        console.log(weather.city.name);
         this.currentCity = weather.city.name
         this.forecast = weather.list
         this.ready = true
-        this.createList(weather.list);
+        this.temperatureList(weather.list);
+        this.humidityList(weather.list);
         this.status = 'LOADED'
       }).catch(() => {
         this.status = 'ERROR'
@@ -53,8 +56,13 @@ import {modelInstance} from "./Model";
       return {
         currentCity: '',
         forecast: [],
-        chartList: [],
-        ready: false
+        humChart: [],
+        tempChart: [],
+        cloudChart: [],
+        ready: false,
+        showHumidity: false,
+        showTemp: false,
+        showClouds: false 
       }
     },
 
@@ -64,13 +72,22 @@ import {modelInstance} from "./Model";
       update() {
       },
       // Method for creating list for chart
-      createList(obj){
+      temperatureList(obj){
         for(var i=0; i< obj.length; i++){
-          console.log(obj[i].dt_txt);
-          this.chartList.push([obj[i].dt_txt, Math.round(obj[i].main.temp-273.15)]);
+          this.tempChart.push([obj[i].dt_txt, Math.round(obj[i].main.temp-273.15)]);
         }
-        console.log("chartlist");
-        console.log(this.chartList);
+        //console.log("chartlist");
+        //console.log(this.chartList);
+      },
+      humidityList(obj){
+        for(var i=0; i< obj.length; i++){
+          this.humChart.push([obj[i].dt_txt, Math.round(obj[i].main.humidity)]);
+        }
+      },
+      cloudList(obj){
+        for(var i=0; i< obj.length; i++){
+          this.cloudChart.push([obj[i].dt_txt, Math.round(obj[i].clouds.all)]);
+        }
       }
 
     }
