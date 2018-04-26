@@ -4,9 +4,9 @@
         <div class="col-12">
           <div class="col-12 text-center">
             <h4>{{currentCity}}</h4>
-            <button v-on:click="toggleHumidity()">Humidity</button>
-            <button v-on:click="toggleTemp()">Temperature</button>
-            <button v-on:click="toggleClouds()">Clouds</button>
+            <button v-bind:class="{toggle: showHumidity}" v-on:click="toggleHumidity()">Humidity</button>
+            <button v-bind:class="{toggle: showTemp}" v-on:click="toggleTemp()">Temperature</button>
+            <button v-bind:class="{toggle: showClouds}" v-on:click="toggleClouds()">Clouds</button>
           </div>
           <!--
           <div v-if="ready" v-for="(temp, index) in forecast" class="col-12">
@@ -130,6 +130,10 @@ import {modelInstance} from "./Model";
 #results:hover{
   box-shadow: 10px 10px 10px cyan;
   background: rgba(0, 0, 0, 0.9);
+}
+
+.toggle{
+  background: green;
 }
 
 </style>
