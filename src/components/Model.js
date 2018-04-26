@@ -44,10 +44,21 @@ const Model = function () {
     return currentCity;
   }
 
+  this.clearCurrentCity = function(){
+    currentCity = '';
+    localStorage.clear("currentCity");
+    console.log(currentCity);
+  }
+
   this.setWeatherList = function (weather){
     weatherList.push(weather);
     notifyObservers();
   }
+
+
+
+
+
   // API Calls
 
   this.getWeatherForecast = function(id){
@@ -90,6 +101,7 @@ const Model = function () {
 
   this.addObserver = function (observer) {
     observers.push(observer);
+    notifyObservers();
   };
 
   this.removeObserver = function (observer) {

@@ -18,7 +18,7 @@
          <div v-if="showHumidity"><line-chart :data="humChart" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="% Humidity"></line-chart></div>
          <div v-else-if="showTemp"><line-chart :data="tempChart" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="Temperature C"></line-chart></div>
          <div v-else-if="showClouds"><line-chart :data="cloudChart" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="% Clouds"></line-chart></div>
-         <router-link class='btn btn-primary mb-3' to="/destinations" exact>Back to search results</router-link>
+         <router-link class='btn btn-primary mb-3' to="/destinations" @click.native="back" exact>Back to search results</router-link>
         </div>
         </div>
       </div>
@@ -69,6 +69,10 @@ import {modelInstance} from "./Model";
 
     methods: {
 
+      back(){
+        modelInstance.clearCurrentCity();
+      },
+
       toggleClouds(){
         this.showClouds = true;
         this.showHumidity = false;
@@ -87,6 +91,7 @@ import {modelInstance} from "./Model";
       // in our update function we modify the the property of
       // the compoented which will cause the component to re-render
       update() {
+        console.log("Detailed view updated");
       },
       // Method for creating list for chart
       temperatureList(obj){

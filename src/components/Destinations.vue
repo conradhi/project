@@ -59,6 +59,7 @@ import {modelInstance} from "./Model";
       },
 
       update(){
+        console.log("Destinations updated")
         this.ready = false,
         this.weatherList = modelInstance.getWeatherList(),
         this.ready = true
