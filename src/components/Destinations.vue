@@ -6,9 +6,9 @@
       <div class="row">
 
         <div v-if="ready" v-for="(city, index) in weatherList" class="col-4">
-          <router-link v-bind:to="'/detailedview/' + weatherList[index].id">
+          <router-link v-bind:to="'/detailedview/' + weatherList[weatherList.length - index - 1].id">
             <div class="m-4 p-4"  id="results">
-              <div class="col-12" @click="setCurrentCity(weatherList[index].id)">
+              <div class="col-12" @click="setCurrentCity(weatherList[weatherList.length - index - 1].id)">
                 <div class="col-12 text-center">
                   <h4>{{weatherList[weatherList.length - index - 1].name}}</h4>
                 </div>

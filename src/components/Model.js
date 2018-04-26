@@ -45,8 +45,9 @@ const Model = function () {
   }
 
   this.clearCurrentCity = function(){
-    currentCity = '';
-    localStorage.clear("currentCity");
+    //currentCity = '';
+    //localStorage.clear("currentCity");
+    notifyObservers();
     console.log(currentCity);
   }
 
@@ -101,7 +102,8 @@ const Model = function () {
 
   this.addObserver = function (observer) {
     observers.push(observer);
-    notifyObservers();
+    
+
   };
 
   this.removeObserver = function (observer) {

@@ -71,6 +71,7 @@ import {modelInstance} from "./Model";
 
       back(){
         modelInstance.clearCurrentCity();
+
       },
 
       toggleClouds(){
@@ -92,6 +93,7 @@ import {modelInstance} from "./Model";
       // the compoented which will cause the component to re-render
       update() {
         console.log("Detailed view updated");
+        //this.currentCity = modelInstance.getCurrentCity();
       },
       // Method for creating list for chart
       temperatureList(obj){
