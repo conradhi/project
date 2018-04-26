@@ -1,13 +1,13 @@
 <template>
   <div v-if="ready" class="col-12">
-      <div class="m-4 p-4"  id="results">
-        <div class="col-12">
-          <div class="col-12 text-center">
-            <h4>{{currentCity}}</h4>
-            <button v-bind:class="{toggle: showHumidity}" v-on:click="toggleHumidity()">Humidity</button>
-            <button v-bind:class="{toggle: showTemp}" v-on:click="toggleTemp()">Temperature</button>
-            <button v-bind:class="{toggle: showClouds}" v-on:click="toggleClouds()">Clouds</button>
-          </div>
+    <div class="m-4 p-4"  id="results">
+      <div class="col-12">
+        <div class="col-12 text-center">
+          <h4>{{currentCity}}</h4>
+          <button v-bind:class="{toggle: showHumidity}" v-on:click="toggleHumidity()">Humidity</button>
+          <button v-bind:class="{toggle: showTemp}" v-on:click="toggleTemp()">Temperature</button>
+          <button v-bind:class="{toggle: showClouds}" v-on:click="toggleClouds()">Clouds</button>
+        </div>
           <!--
           <div v-if="ready" v-for="(temp, index) in forecast" class="col-12">
              <div class="col-12 text-center">
@@ -20,8 +20,7 @@
          <div v-else-if="showClouds"><line-chart :data="cloudChart" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="% Clouds"></line-chart></div>
          <router-link class='btn btn-primary mb-3' to="/destinations" @click.native="back" exact>Back to search results</router-link>
         </div>
-        </div>
-      </div>
+    </div>
   </div>
 
 </template>

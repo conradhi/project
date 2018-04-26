@@ -1,14 +1,12 @@
-
-
 <template>
   <div class="col-12 offset-md-3 col-md-9" id="rightContainer">
 		<div class="container-fluid">
       <div class="row">
 
         <div v-if="ready" v-for="(city, index) in weatherList" class="col-4">
-          <router-link v-bind:to="'/detailedview/' + weatherList[weatherList.length - index - 1].id">
+          <router-link v-bind:to="'/detailedview/' + weatherList[weatherList.length - index -1].id">
             <div class="m-4 p-4"  id="results">
-              <div class="col-12" @click="setCurrentCity(weatherList[weatherList.length - index - 1].id)">
+              <div class="col-12" @click="setCurrentCity(weatherList[weatherList.length - index -1].id)">
                 <div class="col-12 text-center">
                   <h4>{{weatherList[weatherList.length - index - 1].name}}</h4>
                 </div>
@@ -59,7 +57,6 @@ import {modelInstance} from "./Model";
       },
 
       update(){
-        console.log("Destinations updated")
         this.ready = false,
         this.weatherList = modelInstance.getWeatherList(),
         this.ready = true
