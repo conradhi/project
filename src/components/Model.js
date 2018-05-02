@@ -43,6 +43,28 @@ const Model = function () {
     return weatherList;
   }
 
+  this.getValue = function(humidity, temp, clouds, humList, tempList, cloudList){
+    if(humidity === true){
+      var hum=0;
+      for(var i=0; i<humList.length; i++){
+        hum += humList[i][1];
+      }
+      return (hum/40) + " %";
+    }else if(clouds=== true){
+      var cloud = 0;
+      for(var i=0;i<cloudList.length;i++){
+        cloud +=cloudList[i][1];
+      }
+      return (cloud/40) + " %";
+    }else{
+      var temp = 0;
+      for(var i=0;i<tempList.length;i++){
+        temp +=tempList[i][1];
+      }
+      return (temp/40) + " C";
+    }
+  }
+
   this.removeFromWeatherList = function(id){
     for(var i=0; i< weatherList.length; i++){
       if(id === weatherList[i].id){

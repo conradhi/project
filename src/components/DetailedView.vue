@@ -9,6 +9,7 @@
             <button class='btn btn-primary' v-bind:class="{toggle: showTemp}" @click="toggleTemp()">Temperature</button>
             <button class='btn btn-primary' v-bind:class="{toggle: showClouds}" @click="toggleClouds()">Clouds</button>
           </div>
+          <div>Mean value: {{gettingValue(this.showHumidity, this.showTemp, this.showClouds, this.humChart, this.tempChart, this.cloudChart)}}</div>
         </div>
           <!--
           <div v-if="ready" v-for="(temp, index) in forecast" class="col-12">
@@ -65,6 +66,7 @@ import {modelInstance} from "./Model";
         showHumidity: false,
         showTemp: true,
         showClouds: false,
+        
       } 
     },
 
@@ -73,6 +75,10 @@ import {modelInstance} from "./Model";
       back(){
         modelInstance.clearCurrentCity();
 
+      },
+
+      gettingValue(){
+        return modelInstance.getValue(this.showHumidity, this.showTemp, this.showClouds, this.humChart, this.tempChart, this.cloudChart);
       },
 
       toggleClouds(){

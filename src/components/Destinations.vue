@@ -4,7 +4,8 @@
       <div class="row">
 
         <div v-if="ready" v-for="(city, index) in weatherList" class="col-4">
-                        <button class='btn btn-primary' @click="remove(weatherList[weatherList.length - index -1].id)">X</button>
+          <div id="result2">
+          <button class='btn btn-primary' @click="remove(weatherList[weatherList.length - index -1].id)">X</button>
           <router-link v-bind:to="'/detailedview/' + weatherList[weatherList.length - index -1].id">
             <div class="m-4 p-4"  id="results">
               <div class="col-12" @click="setCurrentCity(weatherList[weatherList.length - index -1].id)">
@@ -23,6 +24,7 @@
               </div>
             </div>
           </router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -79,7 +81,7 @@ a:hover,  a:visited,  a:link,  a:active {
   text-decoration: none;
 }
 
-#results{
+#result2{
   color: white;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 20px;
