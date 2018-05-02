@@ -13,12 +13,17 @@ OBS! Firebase deployment is under construction, please use localHost to run the 
 * Basic setup of application
 * Fetch current weather from API
 * Store data to Firebase
-
-### ToDo
-
 * Fetch Five day forecast from API
 * Plot in graph
-* Go Back-button
+
+### ToDo
+* Store presistent states (when going back/reload app)
+* Start with showing temperature
+* Same design on buttons
+* Confirm button?
+* Warning when not entering search string
+* No duplicates when searching for cities
+* Remove chosen city
 * Deploy app in Firebase
 
 <hr>
