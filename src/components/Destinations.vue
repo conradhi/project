@@ -87,7 +87,7 @@ a:hover,  a:visited,  a:link,  a:active {
   border-radius: 20px;
 }
 
-#results:hover{
+#result2:hover{
   box-shadow: 10px 10px 10px cyan;
 }
 

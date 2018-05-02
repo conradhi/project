@@ -5,6 +5,8 @@
 ## Description
 
 The application aims to facilitate the process of planning a vacation destination with respect to where the weather is pleasant.
+Search for desired destination and receive information about temperature, humidity and clouds over the next five days.
+
 OBS! Firebase deployment is under construction, please use localHost to run the application!
 
 <hr>
@@ -19,12 +21,12 @@ OBS! Firebase deployment is under construction, please use localHost to run the 
 * Same design on buttons
 * No duplicates when searching for cities
 * Delete confirm button
+* Remove chosen city (Elin & Anna)
 
 ### ToDo
 * Store presistent states (when going back/reload app) (conrad)
-* Remove chosen city (Elin & Anna)
 * Deploy app in Firebase (Carro)
-* Add functionality containing calulations on API data. Display mean values of data under each graph for 1 to 5 days.
+* Add functionality containing calulations on API data. Display mean values of data under each graph for 1 to 5 days. (almost done, not dynamic yet)
 
 <hr>
 

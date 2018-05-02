@@ -89,6 +89,9 @@ import {modelInstance} from "./Model";
         this.cities = modelInstance.autoComplete(str)
       },
 
+      // when a city is clicked in the drop down menu
+      // weather conditions are collected from API
+      // and added to our list of destinations
       setCity(str, id){
         this.citySelected = str,
         modelInstance.getWeather(id).then(weather => {

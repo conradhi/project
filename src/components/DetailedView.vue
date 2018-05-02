@@ -9,7 +9,17 @@
             <button class='btn btn-primary' v-bind:class="{toggle: showTemp}" @click="toggleTemp()">Temperature</button>
             <button class='btn btn-primary' v-bind:class="{toggle: showClouds}" @click="toggleClouds()">Clouds</button>
           </div>
-          <div>Mean value: {{gettingValue(this.showHumidity, this.showTemp, this.showClouds, this.humChart, this.tempChart, this.cloudChart)}}</div>
+          <div>
+            <select v-model="selected" @change="onChange()">
+              <option disabled value="">Please select one</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            <span>Mean value for {{ getDays() }} days:  {{gettingValue(selected)}}</span>
+          </div>
         </div>
           <!--
           <div v-if="ready" v-for="(temp, index) in forecast" class="col-12">
@@ -77,8 +87,21 @@ import {modelInstance} from "./Model";
 
       },
 
-      gettingValue(){
-        return modelInstance.getValue(this.showHumidity, this.showTemp, this.showClouds, this.humChart, this.tempChart, this.cloudChart);
+      // retrieving the amount of days (from the model) that mean values will be calculated on 
+      getDays(){
+        return modelInstance.getSelectedDays();
+        console.log(this.selected)
+      },
+
+      // whenever the user changes the amount of days, the values will be updated
+      onChange(){
+        modelInstance.setSelectedDays(this.selected);
+        console.log(modelInstance.getSelectedDays());
+        gettingValue(modelInstance.getSelectedDays());
+      },
+
+      gettingValue(num){
+        return modelInstance.getValue(num, this.showHumidity, this.showTemp, this.showClouds, this.humChart, this.tempChart, this.cloudChart);
       },
 
       toggleClouds(){
@@ -96,19 +119,15 @@ import {modelInstance} from "./Model";
         this.showHumidity = false;
         this.showTemp = true;
       },
-      // in our update function we modify the the property of
-      // the compoented which will cause the component to re-render
+
       update() {
-        console.log("Detailed view updated");
-        //this.currentCity = modelInstance.getCurrentCity();
       },
-      // Method for creating list for chart
+      
+      // 3 methods for creating 3 lists for the graphs
       temperatureList(obj){
         for(var i=0; i< obj.length; i++){
           this.tempChart.push([obj[i].dt_txt, Math.round(obj[i].main.temp-273.15)]);
         }
-        //console.log("showHumidity");
-        //console.log(this.chartList);
       },
       humidityList(obj){
         for(var i=0; i< obj.length; i++){

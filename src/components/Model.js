@@ -9,7 +9,9 @@ const Model = function () {
   let cities = json;
   let currentCity = "";
   let weatherList = [];
+  let days = 0;
 
+  // function for autocompleting input in searchbar
   this.autoComplete = function (str){
     var results = [];
     var nrOfResults = 1;
@@ -38,33 +40,43 @@ const Model = function () {
       return results;
     }
   }
+  this.setSelectedDays = function(num){
+    days = num;
+    notifyObservers();
+  }
+
+  this.getSelectedDays = function(){
+    return days;
+  }
 
   this.getWeatherList = function(){
     return weatherList;
   }
 
-  this.getValue = function(humidity, temp, clouds, humList, tempList, cloudList){
+  // calculating the temperature/cloud/ or humidity values for the selected amount of days
+  this.getValue = function(num, humidity, temp, clouds, humList, tempList, cloudList){
     if(humidity === true){
       var hum=0;
-      for(var i=0; i<humList.length; i++){
+      for(var i=0; i<num*8; i++){
         hum += humList[i][1];
       }
-      return (hum/40) + " %";
+      return (hum/(num*8)) + " %";
     }else if(clouds=== true){
       var cloud = 0;
-      for(var i=0;i<cloudList.length;i++){
+      for(var i=0;i<num*8;i++){
         cloud +=cloudList[i][1];
       }
-      return (cloud/40) + " %";
+      return (cloud/(num*8)) + " %";
     }else{
       var temp = 0;
-      for(var i=0;i<tempList.length;i++){
+      for(var i=0;i<num*8;i++){
         temp +=tempList[i][1];
       }
-      return (temp/40) + " C";
+      return (temp/(num*8)) + " C";
     }
   }
 
+  // remove city from list of destinations
   this.removeFromWeatherList = function(id){
     for(var i=0; i< weatherList.length; i++){
       if(id === weatherList[i].id){
@@ -89,6 +101,7 @@ const Model = function () {
     notifyObservers();
   }
 
+  // pushing the weather object to our weatherList containing the weather of the destinations the user has chosen
   this.setWeatherList = function (weather){
     if(weatherList.length === 0){
       weatherList.push(weather);
