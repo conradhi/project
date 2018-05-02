@@ -4,6 +4,7 @@
       <div class="row">
 
         <div v-if="ready" v-for="(city, index) in weatherList" class="col-4">
+                        <button class='btn btn-primary' @click="remove(weatherList[weatherList.length - index -1].id)">X</button>
           <router-link v-bind:to="'/detailedview/' + weatherList[weatherList.length - index -1].id">
             <div class="m-4 p-4"  id="results">
               <div class="col-12" @click="setCurrentCity(weatherList[weatherList.length - index -1].id)">
@@ -54,6 +55,10 @@ import {modelInstance} from "./Model";
 
       setCurrentCity(id){
         modelInstance.setCurrentCity(id);
+      },
+
+      remove(id){
+        modelInstance.removeFromWeatherList(id);
       },
 
       update(){

@@ -43,6 +43,16 @@ const Model = function () {
     return weatherList;
   }
 
+  this.removeFromWeatherList = function(id){
+    for(var i=0; i< weatherList.length; i++){
+      if(id === weatherList[i].id){
+        weatherList.splice(i, 1);
+        return;
+      }
+    }
+    notifyObservers();
+  }
+
   this.setCurrentCity = function(id){
     currentCity = id;
     localStorage.currentCity = id;
@@ -54,8 +64,6 @@ const Model = function () {
   }
 
   this.clearCurrentCity = function(){
-    //currentCity = '';
-    //localStorage.clear("currentCity");
     notifyObservers();
   }
 
@@ -73,7 +81,6 @@ const Model = function () {
       }
       weatherList.push(weather);
     }
-    console.log(weatherList);
     notifyObservers();
   }
 
