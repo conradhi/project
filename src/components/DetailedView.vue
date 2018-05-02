@@ -4,9 +4,11 @@
       <div class="col-12">
         <div class="col-12 text-center">
           <h4>{{currentCity}}</h4>
-          <button v-bind:class="{toggle: showHumidity}" v-on:click="toggleHumidity()">Humidity</button>
-          <button v-bind:class="{toggle: showTemp}" v-on:click="toggleTemp()">Temperature</button>
-          <button v-bind:class="{toggle: showClouds}" v-on:click="toggleClouds()">Clouds</button>
+          <div class='btn-group'>
+            <button class='btn btn-primary' v-bind:class="{toggle: showHumidity}" @click="toggleHumidity()">Humidity</button>
+            <button class='btn btn-primary' v-bind:class="{toggle: showTemp}" @click="toggleTemp()">Temperature</button>
+            <button class='btn btn-primary' v-bind:class="{toggle: showClouds}" @click="toggleClouds()">Clouds</button>
+          </div>
         </div>
           <!--
           <div v-if="ready" v-for="(temp, index) in forecast" class="col-12">
@@ -61,7 +63,7 @@ import {modelInstance} from "./Model";
         cloudChart: [],
         ready: false,
         showHumidity: false,
-        showTemp: false,
+        showTemp: true,
         showClouds: false,
       } 
     },
@@ -132,7 +134,7 @@ import {modelInstance} from "./Model";
 }
 
 .toggle{
-  background: green;
+  background: blue;
 }
 
 </style>

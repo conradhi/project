@@ -15,16 +15,16 @@ OBS! Firebase deployment is under construction, please use localHost to run the 
 * Store data to Firebase
 * Fetch Five day forecast from API
 * Plot in graph
-
-### ToDo
-* Store presistent states (when going back/reload app)
 * Start with showing temperature
 * Same design on buttons
-* Confirm button?
-* Warning when not entering search string
 * No duplicates when searching for cities
-* Remove chosen city
-* Deploy app in Firebase
+* Delete confirm button
+
+### ToDo
+* Store presistent states (when going back/reload app) (conrad)
+* Remove chosen city (Elin & Anna)
+* Deploy app in Firebase (Carro)
+* Add functionality containing calulations on API data. Display mean values of data under each graph for 1 to 5 days.
 
 <hr>
 

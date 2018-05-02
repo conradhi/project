@@ -15,6 +15,7 @@ const Model = function () {
     var nrOfResults = 1;
     str = str.toLowerCase();
     if (str.length >= 1) {
+      nrOfResults = 0;
       for (var i = 0; i < json.length; i++) {
         if (json[i].name.toLowerCase().startsWith(str)) {
           results.push(json[i]);
@@ -22,12 +23,20 @@ const Model = function () {
         }
       }
     }
-    if (nrOfResults > 10) {
-      nrOfResults = 10;
+    if(nrOfResults < 10 && nrOfResults >= 1) {
+      results.sort();
+      return results;
     }
-    results = results.slice(0,nrOfResults);
-    results.sort();
-    return results;
+    else if(nrOfResults > 10) {
+      nrOfResults = 10;
+      results = results.slice(0,nrOfResults);
+      results.sort();
+      return results;
+    }
+    else{
+      results = [];
+      return results;
+    }
   }
 
   this.getWeatherList = function(){
@@ -48,11 +57,23 @@ const Model = function () {
     //currentCity = '';
     //localStorage.clear("currentCity");
     notifyObservers();
-    console.log(currentCity);
   }
 
   this.setWeatherList = function (weather){
-    weatherList.push(weather);
+    if(weatherList.length === 0){
+      weatherList.push(weather);
+      notifyObservers();
+    }
+    else{
+      for(var i=0; i< weatherList.length; i++){
+        if(weather.id === weatherList[i].id){
+          alert("You already added this city");
+          return;
+        }
+      }
+      weatherList.push(weather);
+    }
+    console.log(weatherList);
     notifyObservers();
   }
 

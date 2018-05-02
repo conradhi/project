@@ -17,8 +17,9 @@
               <div class="form-group col-12">
                 <label>City: {{citySelected}}</label>
                 <input type="text" class="form-control" id="search-input" placeholder="Search..." v-model="search" onkeypress="return event.keyCode != 13" v-on:keyup="getSearchOptions(search)">
-                <div v-for="(city, index) in cities" @click="setCity(cities[index].name, cities[index].id), getSearchOptions(' ')" class="col-12" id="cities">
-                  {{cities[index].name}} - {{cities[index].country}}
+                <div v-if="cities.length == 0 && search.length != 0">No results found</div>
+                <div v-else v-for="(city, index) in cities" @click="setCity(cities[index].name, cities[index].id), getSearchOptions(' ')" class="col-12" id="cities">
+                {{cities[index].name}} - {{cities[index].country}}
                 </div>
               </div>
               <!--<div class="col-12">
@@ -38,7 +39,7 @@
               </div>-->
             </div>
 					</div>
-          <router-link class='btn btn-primary mb-3' to="/confirm" exact>Confirm city</router-link>
+
 				</div>
 
 			</nav>
