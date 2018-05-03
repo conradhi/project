@@ -3,7 +3,7 @@
 		<div class="container-fluid">
       <div class="row">
 
-        <div v-if="ready" v-for="(city, index) in weatherList" class="col-4">
+        <div v-for="(city, index) in weatherList" class="col-4">
           <div id="result2">
           <button class='btn btn-primary' @click="remove(weatherList[weatherList.length - index -1].id)">X</button>
           <router-link v-bind:to="'/detailedview/' + weatherList[weatherList.length - index -1].id">
@@ -38,6 +38,7 @@ import {modelInstance} from "./Model";
 
     created() {
       modelInstance.addObserver(this)
+      this.weatherList = modelInstance.getWeatherList();
     },
 
     beforeDestroy() {
@@ -46,7 +47,6 @@ import {modelInstance} from "./Model";
 
     data() {
       return {
-        ready: false,
         status: 'INITIAL',
         search: "",
         weatherList: []
@@ -64,9 +64,7 @@ import {modelInstance} from "./Model";
       },
 
       update(){
-        this.ready = false,
-        this.weatherList = modelInstance.getWeatherList(),
-        this.ready = true
+        this.weatherList = modelInstance.getWeatherList()
       }
 
     }

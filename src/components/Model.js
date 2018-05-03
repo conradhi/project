@@ -1,6 +1,3 @@
-/*const httpOptions = {
-  headers: {'X-Mashape-Key': '6136693860b8ed827adace0ea28df125'}
-};*/
 
 import json from "./city.list.json"
 const Model = function () {
@@ -49,7 +46,38 @@ const Model = function () {
     return days;
   }
 
+  // pushing the weather object to our weatherList containing the weather of the destinations the user has chosen
+  this.setWeatherList = function (weather){
+    if(weatherList.length === 0){
+      weatherList.push(weather);
+      localStorage.setItem("weatherList", JSON.stringify(weatherList));
+    }
+    else{
+      for(var i=0; i< weatherList.length; i++){
+        if(weather.id === weatherList[i].id){
+          alert("You already added this city");
+          return;
+        }
+      }
+      weatherList.push(weather);
+      localStorage.setItem("weatherList", JSON.stringify(weatherList));
+    }
+    notifyObservers();
+  }
+
+
   this.getWeatherList = function(){
+    if(weatherList[0] != null){
+      var storedWeather = JSON.parse(localStorage.getItem("weatherList"));
+      if(storedWeather[0] != null){
+        weatherList = storedWeather;
+      }
+    }else{
+      var storedWeather = JSON.parse(localStorage.getItem("weatherList"));
+      if(storedWeather[0] != null){
+        weatherList = storedWeather;
+      }
+    }
     return weatherList;
   }
 
@@ -81,6 +109,7 @@ const Model = function () {
     for(var i=0; i< weatherList.length; i++){
       if(id === weatherList[i].id){
         weatherList.splice(i, 1);
+        localStorage.setItem("weatherList", JSON.stringify(weatherList));
         return;
       }
     }
@@ -100,27 +129,6 @@ const Model = function () {
   this.clearCurrentCity = function(){
     notifyObservers();
   }
-
-  // pushing the weather object to our weatherList containing the weather of the destinations the user has chosen
-  this.setWeatherList = function (weather){
-    if(weatherList.length === 0){
-      weatherList.push(weather);
-      notifyObservers();
-    }
-    else{
-      for(var i=0; i< weatherList.length; i++){
-        if(weather.id === weatherList[i].id){
-          alert("You already added this city");
-          return;
-        }
-      }
-      weatherList.push(weather);
-    }
-    notifyObservers();
-  }
-
-
-
 
 
   // API Calls

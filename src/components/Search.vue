@@ -22,21 +22,6 @@
                 {{cities[index].name}} - {{cities[index].country}}
                 </div>
               </div>
-              <!--<div class="col-12">
-                Number of Vacation days
-              </div>
-              <div class="col-12 mt-3 justify-content-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-secondary">{{days}}</button>
-                  <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#" v-for="number in numbers" @click="setDays(number)">{{number}}</a>
-                  </div>
-                </div>
-
-              </div>-->
             </div>
 					</div>
 
@@ -95,7 +80,6 @@ import {modelInstance} from "./Model";
       setCity(str, id){
         this.citySelected = str,
         modelInstance.getWeather(id).then(weather => {
-          console.log(weather);
           modelInstance.setWeatherList(weather)
           this.status = 'LOADED'
         }).catch(() => {

@@ -1,7 +1,7 @@
 <template >
   <div>
     <header>
-  	   <h1>Weather forecast</h1>
+  	   <h1>Vacation Weather Forecast</h1>
 	  </header>
     <div class="row">
       <router-view name="navbar" id="fixed"></router-view>
@@ -38,7 +38,7 @@ export default {
 
   header {
     background: white;
-    color: blue;
+    color: cyan;
     margin: 0;
     opacity: 1;
     padding: 5px;

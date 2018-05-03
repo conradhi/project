@@ -10,28 +10,25 @@
             <button class='btn btn-primary' v-bind:class="{toggle: showClouds}" @click="toggleClouds()">Clouds</button>
           </div>
           <div>
-            <select v-model="selected" @change="onChange()">
-              <option disabled value="">Please select one</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-            <span>Mean value for {{ getDays() }} days:  {{gettingValue(selected)}}</span>
+          <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              Number of days
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" @click="changeDays(1)">1</a>
+              <a class="dropdown-item" @click="changeDays(2)">2</a>
+              <a class="dropdown-item" @click="changeDays(3)">3</a>
+              <a class="dropdown-item" @click="changeDays(4)">4</a>
+              <a class="dropdown-item" @click="changeDays(5)">5</a>
+            </div>
+          </div>
+            <span>Mean value for {{ days }} days:  {{gettingValue(days)}}</span>
           </div>
         </div>
-          <!--
-          <div v-if="ready" v-for="(temp, index) in forecast" class="col-12">
-             <div class="col-12 text-center">
-             
-              <h6>Temp: {{forecast[index].main.temp}} C  {{forecast[index].dt_txt}}</h6>
-            </div>
-         </div>-->
          <div v-if="showHumidity"><line-chart :data="humChart" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="% Humidity"></line-chart></div>
          <div v-else-if="showTemp"><line-chart :data="tempChart" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="Temperature C"></line-chart></div>
          <div v-else-if="showClouds"><line-chart :data="cloudChart" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="% Clouds"></line-chart></div>
-         <router-link class='btn btn-primary mb-3' to="/destinations" @click.native="back" exact>Back to search results</router-link>
+         <router-link @click.native="back()" class='btn btn-primary mb-3' to="/destinations" exact>Back to search results</router-link>
         </div>
     </div>
   </div>
@@ -56,7 +53,6 @@ import {modelInstance} from "./Model";
       }).catch(() => {
         this.status = 'ERROR'
       })
-      console.log("created")
     },
 
     // this is called when component is removed destroyed
@@ -76,6 +72,7 @@ import {modelInstance} from "./Model";
         showHumidity: false,
         showTemp: true,
         showClouds: false,
+        days: 1,
         
       } 
     },
@@ -84,24 +81,25 @@ import {modelInstance} from "./Model";
 
       back(){
         modelInstance.clearCurrentCity();
-
       },
 
       // retrieving the amount of days (from the model) that mean values will be calculated on 
       getDays(){
         return modelInstance.getSelectedDays();
-        console.log(this.selected)
       },
 
       // whenever the user changes the amount of days, the values will be updated
       onChange(){
         modelInstance.setSelectedDays(this.selected);
-        console.log(modelInstance.getSelectedDays());
         gettingValue(modelInstance.getSelectedDays());
       },
 
       gettingValue(num){
         return modelInstance.getValue(num, this.showHumidity, this.showTemp, this.showClouds, this.humChart, this.tempChart, this.cloudChart);
+      },
+
+      changeDays(num){
+        this.days = num;
       },
 
       toggleClouds(){
@@ -121,8 +119,9 @@ import {modelInstance} from "./Model";
       },
 
       update() {
+
       },
-      
+
       // 3 methods for creating 3 lists for the graphs
       temperatureList(obj){
         for(var i=0; i< obj.length; i++){
