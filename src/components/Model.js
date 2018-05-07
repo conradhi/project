@@ -28,6 +28,7 @@ const Model = function () {
     }
     else if(nrOfResults > 10) {
       nrOfResults = 10;
+      console.log("hej");
       results = results.slice(0,nrOfResults);
       results.sort();
       return results;
