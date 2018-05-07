@@ -7,7 +7,7 @@
 					<h3 id="text">Search City</h3>
 				</div>
 
-				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2">
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2" id="navBtn">
 	   				<span class="navbar-toggler-icon"></span>
 	 			</button>
 
@@ -15,7 +15,7 @@
 					<div class="container-fluid">
             <div class="row">
               <div class="form-group col-12">
-                <label>City: {{citySelected}}</label>
+                <label>Last search: {{citySelected}}</label>
                 <input type="text" class="form-control" id="search-input" placeholder="Search..." v-model="search" onkeypress="return event.keyCode != 13" v-on:keyup="getSearchOptions(search)">
                 <div v-if="cities.length == 0 && search.length != 0">No results found</div>
                 <div v-else v-for="(city, index) in cities" @click="setCity(cities[index].name, cities[index].id), getSearchOptions(' ')" class="col-12" id="cities">
@@ -78,7 +78,8 @@ import {modelInstance} from "./Model";
       // weather conditions are collected from API
       // and added to our list of destinations
       setCity(str, id){
-        this.citySelected = str,
+        this.citySelected = str
+        this.search = ""
         modelInstance.getWeather(id).then(weather => {
           modelInstance.setWeatherList(weather)
           this.status = 'LOADED'
@@ -129,6 +130,10 @@ import {modelInstance} from "./Model";
   #menuTitel{
     color: white;
     border-bottom: 2px solid;
+  }
+
+  #navBtn{
+    background-color: rgba(119,136,153, 0.8);
   }
 
   #remove:hover{

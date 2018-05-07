@@ -3,27 +3,34 @@
 		<div class="container-fluid">
       <div class="row">
 
-        <div v-for="(city, index) in weatherList" class="col-4">
+        <div v-for="(city, index) in weatherList" class="col-12 col-md-4 mt-4">
           <div id="result2">
-          <button class='btn btn-primary' @click="remove(weatherList[weatherList.length - index -1].id)">X</button>
-          <router-link v-bind:to="'/detailedview/' + weatherList[weatherList.length - index -1].id">
-            <div class="m-4 p-4"  id="results">
-              <div class="col-12" @click="setCurrentCity(weatherList[weatherList.length - index -1].id)">
-                <div class="col-12 text-center">
-                  <h4>{{weatherList[weatherList.length - index - 1].name}}</h4>
-                </div>
-                <div class="col-12 text-center">
-                  <h6>Clouds: {{weatherList[weatherList.length - index - 1].clouds.all}} %</h6>
-                </div>
-                <div class="col-12 text-center">
-                  <h6>Temp: {{Math.round(weatherList[weatherList.length - index - 1].main.temp - 273.15)}} C</h6>
-                </div>
-                <div class="col-12 text-center">
-                  <h6>{{weatherList[weatherList.length - index - 1].weather[0].description}}</h6>
-                </div>
+            <div class="row pb-3">
+              <div class="col-1"  @click="remove(weatherList[weatherList.length - index -1].id)">
+                <button class='btn btn-primary'>X</button>
               </div>
+
+              <div class="col-10" @click="setCurrentCity(weatherList[weatherList.length - index -1].id)">
+                <router-link v-bind:to="'/detailedview/' + weatherList[weatherList.length - index -1].id">
+                  <div class="col-12 pt-3 text-center">
+                    <h4>{{weatherList[weatherList.length - index - 1].name}}</h4>
+                  </div>
+
+                  <div class="col-12 text-center">
+                    <h6>Clouds: {{weatherList[weatherList.length - index - 1].clouds.all}} %</h6>
+                  </div>
+
+                  <div class="col-12 text-center">
+                    <h6>Temp: {{Math.round(weatherList[weatherList.length - index - 1].main.temp - 273.15)}} C</h6>
+                  </div>
+
+                  <div class="col-12 text-center">
+                    <h6>{{weatherList[weatherList.length - index - 1].weather[0].description}}</h6>
+                  </div>
+                </router-link>
+              </div>
+
             </div>
-          </router-link>
           </div>
         </div>
       </div>
@@ -47,6 +54,7 @@ import {modelInstance} from "./Model";
 
     data() {
       return {
+        active: false,
         status: 'INITIAL',
         search: "",
         weatherList: []

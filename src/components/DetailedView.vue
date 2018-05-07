@@ -1,18 +1,29 @@
 <template>
   <div v-if="ready" class="col-12">
     <div class="m-4 p-4"  id="results">
-      <div class="col-12">
-        <div class="col-12 text-center">
-          <h4>{{currentCity}}</h4>
+      <div class="row  text-center">
+        <div class="col-12">
+          <h2>{{currentCity}}</h2>
+        </div>
+      </div>
+
+      <div class="row text-center">
+        <div class="col-12 ">
           <div class='btn-group'>
             <button class='btn btn-primary' v-bind:class="{toggle: showHumidity}" @click="toggleHumidity()">Humidity</button>
             <button class='btn btn-primary' v-bind:class="{toggle: showTemp}" @click="toggleTemp()">Temperature</button>
             <button class='btn btn-primary' v-bind:class="{toggle: showClouds}" @click="toggleClouds()">Clouds</button>
           </div>
-          <div>
+        </div>
+      </div>
+
+      </br>
+
+      <div class="row text-center">
+        <div class="col-12">
           <div class="dropdown">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-              Number of days
+              Days
             </button>
             <div class="dropdown-menu">
               <a class="dropdown-item" @click="changeDays(1)">1</a>
@@ -21,15 +32,22 @@
               <a class="dropdown-item" @click="changeDays(4)">4</a>
               <a class="dropdown-item" @click="changeDays(5)">5</a>
             </div>
-          </div>
             <span>Mean value for {{ days }} days:  {{gettingValue(days)}}</span>
           </div>
         </div>
-         <div v-if="showHumidity"><line-chart :data="humChart" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="% Humidity"></line-chart></div>
-         <div v-else-if="showTemp"><line-chart :data="tempChart" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="Temperature C"></line-chart></div>
-         <div v-else-if="showClouds"><line-chart :data="cloudChart" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="% Clouds"></line-chart></div>
-         <router-link @click.native="back()" class='btn btn-primary mb-3' to="/destinations" exact>Back to search results</router-link>
-        </div>
+      </div>
+
+      </br>
+
+       <div v-if="showHumidity"><line-chart :data="humChart" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="% Humidity"></line-chart></div>
+       <div v-else-if="showTemp"><line-chart :data="tempChart" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="Temperature C"></line-chart></div>
+       <div v-else-if="showClouds"><line-chart :data="cloudChart" :colors="['#B8B8B8', '#b00']" xtitle="Date and Time" ytitle="% Clouds"></line-chart></div>
+       <div class="row text-center text-md-left">
+         <div class="col-12">
+           <router-link @click.native="back()" class='btn btn-primary' to="/destinations" exact>Back to search results</router-link>
+         </div>
+       </div>
+
     </div>
   </div>
 
@@ -73,8 +91,8 @@ import {modelInstance} from "./Model";
         showTemp: true,
         showClouds: false,
         days: 1,
-        
-      } 
+
+      }
     },
 
     methods: {
@@ -83,7 +101,7 @@ import {modelInstance} from "./Model";
         modelInstance.clearCurrentCity();
       },
 
-      // retrieving the amount of days (from the model) that mean values will be calculated on 
+      // retrieving the amount of days (from the model) that mean values will be calculated on
       getDays(){
         return modelInstance.getSelectedDays();
       },
