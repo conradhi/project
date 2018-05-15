@@ -1,5 +1,5 @@
 <template >
-  <div>
+  <div> 
     <header>
   	   <h1>Vacation Weather Forecast</h1>
 	  </header>
